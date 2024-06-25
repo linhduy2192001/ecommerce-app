@@ -22,7 +22,7 @@ const Header = () => {
         <div className="container">
           {/* Brand */}
           <Link className="navbar-brand" to={PATH.Home}>
-            <img style={{ width: "50px" }} src="./img/logo.svg" />
+            <img style={{ width: "40px" }} src="./img/shopee-icon.png" />
             Shopper.
           </Link>
           {/* Toggler */}

@@ -6,6 +6,7 @@ import { useAppDispatch } from "../hooks/useAppDispatch";
 import { useAuth } from "../hooks/useAuth";
 import { PATH } from "../config/path";
 import { message } from "antd";
+import { copyTopClipboard } from "../utils/copyToClipBoard";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -25,6 +26,11 @@ const Account = () => {
     } catch (err) {
       console.log("err", err);
     }
+  };
+  const _copyToClipboard = (ev: React.MouseEvent<HTMLDivElement>) => {
+    const text = (ev.currentTarget as HTMLElement).innerText;
+    copyTopClipboard(text);
+    message.info("Copy to clipboard");
   };
   return (
     <div className="d-flex justify-content-center">
@@ -103,6 +109,46 @@ const Account = () => {
             >
               Sign In
             </button>
+          </div>
+          <div className="col-12">
+            <div className="mt-5 font-light font-size-sm text-muted">
+              Tài khoản User:{" "}
+              <div className="text-black">
+                <span
+                  className="underline cursor-pointer"
+                  onClick={_copyToClipboard}
+                >
+                  user
+                </span>{" "}
+                /
+                <span
+                  className="underline cursor-pointer"
+                  onClick={_copyToClipboard}
+                >
+                  123
+                </span>
+                3
+              </div>
+            </div>
+            <div className="mt-5 font-light font-size-sm text-muted">
+              Tài khoản Admin:{" "}
+              <div className="text-black">
+                <span
+                  className="underline cursor-pointer"
+                  onClick={_copyToClipboard}
+                >
+                  admin
+                </span>{" "}
+                /
+                <span
+                  className="underline cursor-pointer"
+                  onClick={_copyToClipboard}
+                >
+                  123
+                </span>
+                3
+              </div>
+            </div>
           </div>
         </div>
       </div>

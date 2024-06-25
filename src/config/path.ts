@@ -5,4 +5,5 @@ export const PATH = {
   Profile: "/ca-nhan",
   Cart: "/gio-hang",
   Admin: "/admin",
+  AccountAdmin: "/quan-ly",
 };

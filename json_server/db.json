@@ -54,6 +54,26 @@
       "id": "0dae",
       "username": "admin",
       "password": "123"
+    },
+    {
+      "id": "7395",
+      "username": "admin",
+      "password": "123"
+    },
+    {
+      "id": "3883",
+      "username": "admin",
+      "password": "123"
+    },
+    {
+      "id": "8380",
+      "username": "admin",
+      "password": "123"
+    },
+    {
+      "id": "56a1",
+      "username": "admin",
+      "password": "123"
     }
   ],
   "products": [
@@ -1375,6 +1395,30 @@
       "id": 134,
       "title": "Table",
       "price": 373,
+      "category": {
+        "id": 5,
+        "name": "Miscellaneous",
+        "image": "https://i.imgur.com/BG8J0Fj.jpg",
+        "creationAt": "2024-06-19T15:30:26.000Z",
+        "updatedAt": "2024-06-19T15:30:26.000Z"
+      }
+    },
+    {
+      "id": 132,
+      "title": "Chair",
+      "price": 111,
+      "category": {
+        "id": 3,
+        "name": "Furniture",
+        "image": "https://i.imgur.com/Qphac99.jpeg",
+        "creationAt": "2024-06-19T15:30:26.000Z",
+        "updatedAt": "2024-06-19T15:30:26.000Z"
+      }
+    },
+    {
+      "id": 133,
+      "title": "Chicken",
+      "price": 457,
       "category": {
         "id": 5,
         "name": "Miscellaneous",

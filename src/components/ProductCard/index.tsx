@@ -6,6 +6,7 @@ import { Product } from "../../types/Product";
 import { currency } from "../../utils/currency";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../config/path";
+import Skeleton from "../Skeleton";
 
 const ProductCard = ({ id, title, image, price, category }: Product) => {
   const dispatch = useAppDispatch();
@@ -92,3 +93,62 @@ const ProductCard = ({ id, title, image, price, category }: Product) => {
 };
 
 export default ProductCard;
+
+export function ProductCardLoading() {
+  return (
+    <div className="col-6 col-md-4">
+      {/* Card */}
+      <div className="product-card card mb-7">
+        {/* Badge */}
+
+        {/* Image */}
+        <div className="card-img">
+          {/* Image */}
+          <a className="card-img-hover" href="product.html">
+            <Skeleton height={300} />
+          </a>
+          {/* Actions */}
+          <div className="card-actions">
+            <span className="card-action"></span>
+            <span className="card-action">
+              <button
+                className="btn btn-xs btn-circle btn-white-primary"
+                data-toggle="button"
+              >
+                <i className="fe fe-shopping-cart" />
+              </button>
+            </span>
+            <span className="card-action">
+              <button
+                className="btn btn-xs btn-circle btn-white-primary"
+                data-toggle="button"
+              >
+                <i className="fe fe-heart" />
+              </button>
+            </span>
+          </div>
+        </div>
+        {/* Body */}
+        <div className="px-0 card-body">
+          {/* Category */}
+          <div className="card-product-category font-size-xs">
+            <a className="text-muted" href="shop.html">
+              <Skeleton width={150} height="100%" />
+            </a>
+          </div>
+          {/* Title */}
+          <div className="card-product-title font-weight-bold">
+            <a className="text-body card-product-name" href="#">
+              <Skeleton width={150} height="100%" />
+            </a>
+          </div>
+          {/* Price */}
+          <div className="font-weight-bold text-muted">
+            {" "}
+            <Skeleton width={150} height="100%" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,5 +1,5 @@
 import { useQueryString } from "../hooks/useQueryString";
-import ProductCard from "../components/ProductCard";
+import ProductCard, { ProductCardLoading } from "../components/ProductCard";
 import { useProducts } from "../hooks/useProducts";
 import Paginate from "../components/Paginate";
 import useCategory, { GroupedProducts } from "../hooks/useCategory";
@@ -9,15 +9,23 @@ import { useQuery } from "@tanstack/react-query";
 import { productService } from "../services/productService";
 import { Pagination } from "antd";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const LIMIT = 11;
 
 const ProductPage = () => {
   const queryString: { page?: string } = useQueryString();
+  const [sortOrder, setSortOrder] = useState("latest");
+
+  const [pages, setPages] = useState(1);
 
   const page = Number(queryString.page) || 1;
 
-  const { data } = useProducts({ page, limit: LIMIT });
+  const { data, isLoading } = useProducts({
+    page,
+    limit: LIMIT,
+    sortOrder: sortOrder,
+  });
 
   const { data: products } = useQuery({
     queryKey: ["product"],
@@ -27,10 +35,17 @@ const ProductPage = () => {
   const productsData: Product[] = products?.data || [];
 
   const groupedCategoryProducts = useCategory(productsData);
-  console.log("groupedCategoryProducts", typeof groupedCategoryProducts);
 
   const totalItem = products?.data.length;
   const totalPage = totalItem ? Math.ceil(totalItem / LIMIT) : 1;
+
+  const handleSortOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(e.target.value);
+  };
+
+  useEffect(() => {
+    setPages(1);
+  }, [sortOrder]);
 
   return (
     <section className="py-11">
@@ -423,7 +438,10 @@ const ProductPage = () => {
               <div className="flex items-center gap-1 col-12 col-md-auto whitespace-nowrap">
                 {/* Select */}
                 Sắp xếp theo:
-                <select className="custom-select custom-select-xs">
+                <select
+                  className="custom-select custom-select-xs"
+                  onChange={handleSortOrder}
+                >
                   <option>Mới nhất</option>
                   <option>Giá giảm dần</option>
                   <option>Giá tăng dần</option>
@@ -435,9 +453,12 @@ const ProductPage = () => {
             </div>
             <h4 className="mb-5 text-2xl">Searching for `Clothing`</h4>
             <div className="row">
-              {products?.data.map((e) => (
-                <ProductCard key={e.id} {...e} />
-              ))}
+              {isLoading
+                ? Array.from(Array(11)).map((e, i) => (
+                    <ProductCardLoading key={i} />
+                  ))
+                : data?.data.map((e) => <ProductCard key={e.id} {...e} />)}
+              {}
             </div>
             {/* Pagination */}
             <Paginate page={page} totalPage={totalPage} />

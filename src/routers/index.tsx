@@ -46,6 +46,10 @@ export const routers = [
             element: <AdminProductPage />,
             path: PATH.Admin,
           },
+          {
+            element: <Profile />,
+            path: PATH.AccountAdmin,
+          },
         ],
       },
     ],
